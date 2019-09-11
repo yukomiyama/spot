@@ -1,0 +1,42 @@
+<div class="articles-show-wrapper">
+  <div class="container">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="article-wrapper">
+          <div class="form-group">
+            <h2 class="article-title text-gray"><%= @article.title %></h2>
+          </div>
+          <div class="form-group tag-label">
+            <%= link_to user_tag_path(id: @tag.id, user_id: @article.user_id) do %>
+              <%= @tag.name %>
+            <% end %>
+          </div>
+          <div class="form-group">
+            <%= @article.content %>
+          </div>
+          <% if current_user?(@article.user) %>
+            <%= link_to 'edit', edit_user_article_path(id: @article.id, user_id: @article.user_id) %>
+            <%= link_to 'delete', user_article_path(id: @article.id, user_id: @article.user_id), method: :delete %>
+          <% end %>
+          <div class="comment-wrapper">
+            <% @comments.each do |comment| %>
+              <div class="form-group">
+                <%= comment.user.name %>
+                <%= comment.content %>
+              </div>
+            <% end %>
+            <%= form_for [current_user, @article, @comment] do |f| %>
+              <div class="form-group col-md-offset-2 col-md-8">
+                <%= f.label :comment, class: 'text-gray' %>
+                <%= f.text_field :content, placeholder: 'comment', class: 'form-control' %>
+              </div>
+              <div class="col-md-offset-4 col-md-4">
+                <%= f.submit "comment", class: 'btn-block' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="users-new-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4">
+        <h1 class="text-white text-center">Signin</h1>
+        <%= form_for @user do |f| %>
+          <%= render 'shared/error_messages' %>
+          <div class="form-group">
+            <%= f.label :name, class: 'text-white' %>
+            <%= f.text_field :name, placeholder: 'name', class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :email, class: 'text-white' %>
+            <%= f.text_field :email, placeholder: 'email', class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password, class: 'text-white' %>
+            <%= f.password_field :password, placeholder: 'password', class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password_confirmation, class: 'text-white' %>
+            <%= f.text_field :password_confirmation, placeholder: 'password_confirmation', class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :myspot_name, class: 'text-white' %>
+            <%= f.text_field :myspot_name, placeholder: 'myspot_name', class: 'form-control' %>
+          </div>
+          <%= f.submit "登録", class: 'btn-block btn-white' %>
+        <% end %>
+        <%= link_to 'ログインはこちら', '#', class: 'text-white' %>
+      </div>
+    </div>
+  </div>
+</div>

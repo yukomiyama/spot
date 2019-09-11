@@ -1,0 +1,29 @@
+<div class="users-show_follow-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="user-prolife-wrapper">
+          <%= @user.name %>
+          <div class="form-group">
+            <%= link_to 'edit', edit_user_path(@user.id) %>
+          </div>
+          <div class="stats">
+            <%= render 'shared/stats' %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="users-follow-wrapper">
+        <h2 class="text-gray"><%= @title %></h2>
+          <% if @users.any? %>
+            <% @users.each do |user| %>
+            <ul class="users follow">
+              <%= link_to user.name, user_path(user.id) %>
+            </ul>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

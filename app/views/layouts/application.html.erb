@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Spot</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
+      <div class="container">
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to 'spot', root_path %></li>
+          <% if logged_in? %>
+            <li><%= link_to 'myspot', user_path(current_user.id) %></li>
+            <li><%= link_to 'users', users_path %></li>
+            <li><%= link_to 'post', new_user_article_path(current_user.id) %></li>
+            <li><%= link_to 'logout', logout_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to 'login', login_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+    <%= yield %>
+  </body>
+</html>

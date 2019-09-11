@@ -1,0 +1,29 @@
+<div class="users-edit-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4">
+        <h1 class="text-white text-center">User edit</h1>
+        <%= form_for @user do |f| %>
+          <%= render 'shared/error_messages' %>
+          <div class="form-group">
+            <%= f.label :name, class: 'text-white' %>
+            <%= f.text_field :name, placeholder: 'name', class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :email, class: 'text-white' %>
+            <%= f.text_field :email, placeholder: 'email', class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password, class: 'text-white' %>
+            <%= f.password_field :password, placeholder: 'password', class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password_confirmation, class: 'text-white' %>
+            <%= f.text_field :password_confirmation, placeholder: 'password_confirmation', class: 'form-control' %>
+          </div>
+          <%= f.submit "編集", class: 'btn-block btn-white' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
