@@ -1,23 +1,25 @@
 <div class="users-index-wrapper">
   <div class="container">
     <div class="row">
-      <div class="col-md-3">
-        <div class="user-prolife-wrapper">
+      <div class="col-md-3 user-prolife-wrapper">
+        <div class="form-group">
           <%= current_user.name %>
-          <form class="form-group">
-            <%= link_to 'edit', edit_user_path(current_user .id) %>
-          </form>
-          <div class="stats">
-            <%= render 'shared/stats' %>
-          </div>
+          <%= image_tag current_user.img.url, class: 'user-img' if current_user.img? %>
+        </div>
+        <form class="form-group">
+          <%= link_to 'edit', edit_user_path(current_user .id) %>
+        </form>
+        <div class="stats">
+          <%= render 'shared/stats' %>
         </div>
       </div>
       <div class="col-md-9">
         <div class="users-wrapper">
           <h1 class="text-gray">Users</h1>
           <% @users.each do |user| %>
-            <div class="form-group">
+            <div class="form-group user">
               <%= link_to user.name, user_path(user.id) %>
+              <%= image_tag user.img.url, class: 'user-img' if user.img? %>
             </div>
           <% end %>
         </div>

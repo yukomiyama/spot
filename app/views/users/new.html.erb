@@ -25,6 +25,10 @@
             <%= f.label :myspot_name, class: 'text-white' %>
             <%= f.text_field :myspot_name, placeholder: 'myspot_name', class: 'form-control' %>
           </div>
+          <div class="form-group">
+            <%= f.label :img, class: 'text-white' %>
+            <%= f.file_field :img, class: 'text-white img' %>
+          </div>
           <%= f.submit "登録", class: 'btn-block btn-white' %>
         <% end %>
         <%= link_to 'ログインはこちら', '#', class: 'text-white' %>

@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length: {minimum: 6}
   has_many :articles
   has_many :comments
+  mount_uploader :img, ImgUploader
 
   #一人のユーザーには1対多のリレーションシップがある。
   #この関係はフォローする側(active_relationships),フォローされる側(passive_relationships)の2つの視点がUserモデルに属する

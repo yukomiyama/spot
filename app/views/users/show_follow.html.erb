@@ -1,25 +1,27 @@
 <div class="users-show_follow-wrapper">
   <div class="container">
     <div class="row">
-      <div class="col-md-3">
-        <div class="user-prolife-wrapper">
+      <div class="col-md-3 user-prolife-wrapper">
+        <div class="form-group">
           <%= @user.name %>
-          <div class="form-group">
-            <%= link_to 'edit', edit_user_path(@user.id) %>
-          </div>
-          <div class="stats">
-            <%= render 'shared/stats' %>
-          </div>
+          <%= image_tag @user.img.url, class: 'user-img' if @user.img? %>
+        </div>
+        <div class="form-group">
+          <%= link_to 'edit', edit_user_path(@user.id) %>
+        </div>
+        <div class="stats">
+          <%= render 'shared/stats' %>
         </div>
       </div>
       <div class="col-md-9">
         <div class="users-follow-wrapper">
-        <h2 class="text-gray"><%= @title %></h2>
+          <h1 class="text-gray"><%= @title %></h1>
           <% if @users.any? %>
             <% @users.each do |user| %>
-            <ul class="users follow">
-              <%= link_to user.name, user_path(user.id) %>
-            </ul>
+              <div class="form-group user">
+                <%= link_to user.name, user_path(user.id) %>
+                <%= image_tag user.img.url, class: 'user-img' if user.img? %>
+              </div>
             <% end %>
           <% end %>
         </div>

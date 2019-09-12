@@ -1,18 +1,19 @@
 <div class="users-show-wrapper">
   <div class="container">
     <div class="row">
-      <div class="col-md-3">
-        <div class="user-prolife-wrapper">
+      <div class="col-md-3 user-prolife-wrapper">
+        <div class="form-group">
           <%= @user.name %>
-          <div class="form-group">
-            <%= link_to 'edit', edit_user_path(@user.id) %>
-          </div>
-          <div class="stats">
-            <%= render 'shared/stats' %>
-          </div>
-          <div class="form-group">
-            <%= render "follow_form" if logged_in? %>
-          </div>
+          <%= image_tag @user.img.url, class: 'user-img' if @user.img? %>
+        </div>
+        <div class="form-group">
+          <%= link_to 'edit', edit_user_path(@user.id) %>
+        </div>
+        <div class="stats">
+          <%= render 'shared/stats' %>
+        </div>
+        <div class="form-group">
+          <%= render "follow_form" if logged_in? %>
         </div>
       </div>
       <div class="col-md-9">
