@@ -15,9 +15,9 @@
           <div class="comment-wrapper">
             <% @comments.each do |comment| %>
               <div class="form-group user">
-                <%= link_to comment.user.name, user_path(comment.user.id) %>
                 <%= image_tag comment.user.img.url, class: 'user-img' if comment.user.img? %>
-                <%= comment.content %>
+                <%= link_to comment.user.name, user_path(comment.user.id) %>
+                <p><%= comment.content %></p>
               </div>
             <% end %>
             <%= form_for [current_user, @article, @comment] do |f| %>

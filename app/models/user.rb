@@ -7,17 +7,12 @@ class User < ApplicationRecord
     has_secure_password
   validates :password, presence: true, length: {minimum: 6}
   has_many :articles
-  has_many :comments
-  mount_uploader :img, ImgUploader
-
-  #一人のユーザーには1対多のリレーションシップがある。
-  #この関係はフォローする側(active_relationships),フォローされる側(passive_relationships)の2つの視点がUserモデルに属する
+  has_many :comments, dependent: :destroy
   has_many :active_relationships, class_name:  "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  #能動的関係を通して、ユーザーがフォローしているユーザーの集合を集める
   has_many :following, through: :active_relationships, source: :followed
-  #受動的関係を通して、ユーザーがフォローされているユーザーの集合を集める
   has_many :followers, through: :passive_relationships
+  mount_uploader :img, ImgUploader
 
   # ユーザーをフォローする
   def follow(other_user)
