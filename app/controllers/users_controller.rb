@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      login_in @user
+      login @user
       flash[:success] = "Welcome to the spot"
       redirect_to user_url(@user)
     else
@@ -38,8 +38,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @tag_list = Tag.all
-    @all_users = User.all
+    # @articles = Article.includes(:user).where(articles: {user_id: @user.id})
+    @articles = Article.where(user_id: @user.id)
+    @tags = Tag.all
   end
 
   def index

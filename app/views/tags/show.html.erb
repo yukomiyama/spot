@@ -6,7 +6,7 @@
           <div class="form-group">
             <h1 class="text-gray"><%= @tag.name %></h1>
           </div>
-          <% @tag_articles.each do |article| %>
+          <% @articles.each do |article| %>
             <%= link_to user_article_path(id: article.id, user_id: article.user_id) do %>
               <div class="form-group">
                 <%= article.title %>

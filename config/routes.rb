@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'favorites/create'
+  get 'favorites/destroy'
   root 'pages#index'
   get     '/login',   to: 'sessions#new'
   post    '/login',   to: 'sessions#create'
@@ -15,5 +17,6 @@ Rails.application.routes.draw do
     resources :tags, only: [:show] do
     end
   end
+  resources :favorites, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
 end

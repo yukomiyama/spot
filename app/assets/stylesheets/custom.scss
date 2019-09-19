@@ -3,7 +3,7 @@
 }
 
 h1,h2,h3,li {
-  font-weight: 100;
+  font-weight: 250;
 }
 
 li {
@@ -26,7 +26,7 @@ p {
 }
 
 .text-white {
-  color: #fff;
+  color: #FFFFEE;
 }
 
 .text-gray {
@@ -53,6 +53,7 @@ p {
   }
 }
 
+/* btn */
 .btn-white {
   font-size: 20px;
   color: #fff;
@@ -84,21 +85,21 @@ p {
   object-fit: cover;
 }
 
+/* background */
 .top-pages-wrapper,
+.users-index-wrapper,
 .users-new-wrapper,
 .users-show-wrapper,
+.users-show_follow-wrapper,
 .users-edit-wrapper,
 .sessions-new-wrapper,
-.myspots-index-wrapper,
-.myspots-new-wrapper,
-.articles-index-wrapper,
 .articles-new-wrapper,
 .articles-show-wrapper,
 .articles-edit-wrapper,
 .tags-show-wrapper, {
   width: 100vw;
   height: 100vh;
-  background: image-url('top-bg.jpg');
+  background: image-url('stone_00090.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -106,17 +107,7 @@ p {
   background-color: #464646;
 }
 
-.users-show_follow-wrapper,
-.users-index-wrapper {
-  width: 100vw;
-  height: 100vh;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background: #C0C0C0;
-}
-
+/*-------------------------------*/
 /* users-index */
 .user-prolife-wrapper {
   background-color: #fff;
@@ -148,12 +139,11 @@ p {
 }
 
 
-/*myspots-index*/
-.myspot-wrapper,
+/*users-index*/
 .article-wrapper,
 .users-wrapper,
 .users-follow-wrapper {
-  min-height: 650px;
+  min-height: 500px;
   border: 2px solid #fff;
   padding: 100px 200px;
   background: #fff;
@@ -215,17 +205,6 @@ p {
   }
   strong {
     display: block;
-  }
-}
-
-.user_avatars {
-  overflow: auto;
-  margin-top: 10px;
-  .gravatar {
-    margin: 1px 1px;
-  }
-  a {
-    padding: 0;
   }
 }
 

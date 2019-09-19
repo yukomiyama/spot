@@ -10,9 +10,7 @@
           <%= link_to 'edit', edit_user_path(current_user.id) %>
           <%= link_to 'destroy', user_path(current_user.id), method: :delete %>
         </form>
-        <div class="stats">
-          <%= render 'shared/stats' %>
-        </div>
+        <%= render 'shared/stats' %>
       </div>
       <div class="col-md-9">
         <div class="users-wrapper">

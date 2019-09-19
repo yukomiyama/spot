@@ -6,12 +6,13 @@
           <h2 class="article-title text-gray"><%= @article.title %></h2>
           <%= link_to @tag.name, user_tag_path(id: @tag.id, user_id: @article.user_id) %>
           <div class="article-content">
-            <%= @article.content %>
+            <%= simple_format(@article.content) %>
           </div>
           <% if current_user?(@article.user) %>
             <%= link_to 'edit', edit_user_article_path(id: @article.id, user_id: @article.user_id) %>
             <%= link_to 'delete', user_article_path(id: @article.id, user_id: @article.user_id), method: :delete %>
           <% end %>
+          <%= render 'favorites/favorite', article: @article %>
           <div class="comment-wrapper">
             <% @comments.each do |comment| %>
               <div class="form-group user">

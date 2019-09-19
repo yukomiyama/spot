@@ -1,0 +1,12 @@
+<% if !current_user?(@article.user) %>
+  <% if @article.favorite?(current_user) %>
+    <%= form_for(@article.favorites.find_by(user_id: current_user.id), method: :delete) do |f| %>
+      <%= "いいね解除" %>
+      <%= button_tag(class: "btn btn-default btn-xs") do %>
+        <%= content_tag :span, "#", class: "glyphicon glyphicon-heart" %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= "いいねする" %>
+  <% end %>
+<% end %>
