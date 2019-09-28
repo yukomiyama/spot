@@ -3,4 +3,5 @@ class Favorite < ApplicationRecord
   validates :article_id, presence: true
   belongs_to :user
   belongs_to :article
+  counter_culture :article
 end

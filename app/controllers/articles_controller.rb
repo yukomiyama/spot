@@ -40,6 +40,10 @@ class ArticlesController < ApplicationController
     @comments = Comment.where(article_id: params[:id])
   end
 
+  def index
+    @articles = Article.search(params[:search]).includes(:user)
+  end
+
   private
 
   def article_params

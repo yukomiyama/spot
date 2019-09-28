@@ -4,6 +4,7 @@
 
 h1,h2,h3,li {
   font-weight: 250;
+  margin: 0;
 }
 
 li {
@@ -67,6 +68,16 @@ p {
   }
 }
 
+.btn-favorite {
+  color: gray;
+  border: 1px solid gray;
+}
+
+.btn-favorited {
+  color: #fff;
+  background: gray;
+}
+
 /* follow-form */
 #follow_form {
   margin-top: 15px;
@@ -96,7 +107,9 @@ p {
 .articles-new-wrapper,
 .articles-show-wrapper,
 .articles-edit-wrapper,
-.tags-show-wrapper, {
+.tags-show-wrapper,
+.favorite-wrapper-index,
+.article-index-wrapper {
   width: 100vw;
   height: 100vh;
   background: image-url('stone_00090.jpg');
@@ -130,19 +143,29 @@ p {
   display: flex;
   align-items: center;
   margin: 10px 0;
+  margin-right: 10px;
   img {
     margin-right: 5px;
   }
   p {
     margin-left: 10px;
   }
+  .article {
+    margin-left: 10px;
+  }
+}
+
+.search-form {
+  margin-top: 10px;
 }
 
 
 /*users-index*/
 .article-wrapper,
 .users-wrapper,
-.users-follow-wrapper {
+.users-follow-wrapper,
+.favorite-article-wrapper,
+.articles {
   min-height: 500px;
   border: 2px solid #fff;
   padding: 100px 200px;
@@ -166,13 +189,37 @@ p {
 }
 
 /*articles-show*/
-.article-title {
-  border-bottom: 1px solid #C0C0C0;
+.article-title-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  img {
+    margin-right: 10px;
+  }
 }
+
+.article-wrapper{
+  .article-title-wrapper {
+    border-bottom: 1px solid #C0C0C0;
+    padding-bottom: 10px;
+  }
+}
+
 
 .article-content {
   padding: 25px 0;
   border-bottom: 1px solid #C0C0C0;
+}
+
+.favorite-wrapper {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  .favorites-count {
+    color: gray;
+    font-size: 15px;
+    margin-left: 5px;
+  }
 }
 
 /*forms-error-messages*/

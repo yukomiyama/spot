@@ -10,13 +10,13 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
     end
-    resources :articles, only: [:new, :create, :edit, :update, :destroy, :show] do
+    resources :articles, only: [:new, :create, :edit, :update, :destroy, :show, :index] do
       resources :comments, only: [:new, :create] do
       end
     end
     resources :tags, only: [:show] do
     end
   end
-  resources :favorites, only: [:create, :destroy]
+  resources :favorites, only: [:create, :destroy, :index]
   resources :relationships, only: [:create, :destroy]
 end

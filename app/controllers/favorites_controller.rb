@@ -10,4 +10,8 @@ class FavoritesController < ApplicationController
     @article = Favorite.find(params[:id]).article
     @article.remove_favorite(current_user)
   end
+
+  def index
+    @favorites_articles = current_user.favorites_articles
+  end
 end

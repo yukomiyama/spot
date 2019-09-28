@@ -22,6 +22,8 @@
             <li><%= link_to 'users', users_path %></li>
             <li><%= link_to 'post', new_user_article_path(current_user.id) %></li>
             <li><%= link_to 'logout', logout_path, method: :delete %></li>
+            <li><%= link_to 'favorites', favorites_path %></li>
+            <li><%= link_to 'articles', user_articles_path(current_user.id) %></li>
           <% else %>
             <li><%= link_to 'login', login_path %></li>
           <% end %>

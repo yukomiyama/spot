@@ -3,7 +3,10 @@
     <div class="col-md-12">
       <div class="row">
         <div class="article-wrapper">
-          <h2 class="article-title text-gray"><%= @article.title %></h2>
+          <div class="article-title-wrapper">
+            <h2><%= image_tag @article.user.img.url, class: 'user-img' if @article.user.img? %></h2>
+            <h2 class="article-title text-gray"><%= @article.title %></h2>
+          </div>
           <%= link_to @tag.name, user_tag_path(id: @tag.id, user_id: @article.user_id) %>
           <div class="article-content">
             <%= simple_format(@article.content) %>
@@ -12,7 +15,9 @@
             <%= link_to 'edit', edit_user_article_path(id: @article.id, user_id: @article.user_id) %>
             <%= link_to 'delete', user_article_path(id: @article.id, user_id: @article.user_id), method: :delete %>
           <% end %>
-          <%= render 'favorites/favorite', article: @article %>
+          <div id="favorite-button_<%= @article.id %>">
+            <%= render 'favorites/favorite', article: @article %>
+          </div>
           <div class="comment-wrapper">
             <% @comments.each do |comment| %>
               <div class="form-group user">

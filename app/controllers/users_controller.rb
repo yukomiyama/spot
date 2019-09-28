@@ -38,13 +38,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # @articles = Article.includes(:user).where(articles: {user_id: @user.id})
     @articles = Article.where(user_id: @user.id)
     @tags = Tag.all
   end
 
   def index
-    @users = User.all
+    @users = User.search(params[:search])
   end
 
   def following
