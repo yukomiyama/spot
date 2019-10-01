@@ -1,0 +1,18 @@
+<div class="communities-new-wrapper">
+  <div class="container">
+    <div class="col-md-offset-4 col-md-4">
+      <h1 class="text-white text-center">New Community</h1>
+      <div class="row">
+        <%= form_for @community do |f| %>
+          <div class="form-group">
+            <%= f.label :name, class: 'text-white' %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "作成", class: 'btn-block btn-white' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

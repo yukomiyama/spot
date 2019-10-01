@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'communities/index'
   get 'favorites/create'
   get 'favorites/destroy'
   root 'pages#index'
@@ -19,4 +20,5 @@ Rails.application.routes.draw do
   end
   resources :favorites, only: [:create, :destroy, :index]
   resources :relationships, only: [:create, :destroy]
+  resources :communities
 end
