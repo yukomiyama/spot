@@ -10,6 +10,10 @@
       <div id="community-button_<%= @community.id %>">
         <%= render 'communities/community', community: @community %>
       </div>
+      <% if @community.user_id == current_user.id %>
+        <%= link_to "Edit", edit_community_path(@community.id), class: "btn btn-community-edit" %>
+        <%= link_to "Destroy", community_path(@community.id), method: :delete, class: "btn btn-community-edit" %>
+      <% end %>
     </div>
     <div class="col-md-8 communities-show-article-erea">
       <h1>Recent Articles</h1>

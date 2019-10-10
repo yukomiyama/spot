@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article = Article.find_by(id: params[:id])
+    @article = Article.find(params[:id])
     if @article.update_attributes(article_params)
       redirect_to user_path(current_user.id)
     else

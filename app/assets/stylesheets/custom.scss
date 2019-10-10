@@ -77,7 +77,10 @@ body {
 }
 
 .btn-favorite,
-.btn-community {
+.btn-community,
+.btn-community-edit {
+  min-width: 100px;
+  max-width: 100%;
   color: gray;
   border: 1px solid gray;
 }
@@ -335,6 +338,9 @@ body {
 
   .btn-community,
   .btn-communitied {
+    margin-top: 15px;
+  }
+  .btn-community-edit {
     margin-top: 15px;
   }
 }

@@ -1,4 +1,6 @@
 class CommunitiesController < ApplicationController
+  before_action :logged_in_user
+
   def new
     @community = Community.new
   end
@@ -6,10 +8,29 @@ class CommunitiesController < ApplicationController
   def create
     @community = current_user.communities.new(community_params)
     if @community.save
-      redirect_to communities_path
+      redirect_to community_path(@community.id)
     else
       render :new
     end
+  end
+
+  def edit
+    @community = @community = Community.find(params[:id])
+  end
+
+  def update
+    @community = Community.find(params[:id])
+    if @community.update_attributes(community_params)
+      redirect_to community_path(@community.id)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @community = Community.find(params[:id])
+    @community.destroy
+    redirect_to communities_path
   end
 
   def show

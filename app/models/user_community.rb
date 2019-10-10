@@ -1,4 +1,4 @@
 class UserCommunity < ApplicationRecord
-  belongs_to :user, dependent: :destroy
-  belongs_to :community, dependent: :destroy
+  belongs_to :user
+  belongs_to :community
 end
