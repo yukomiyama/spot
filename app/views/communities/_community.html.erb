@@ -1,0 +1,10 @@
+<% if @community.community_join?(current_user) %>
+  <%= form_for(current_user.user_communities.find_by(community_id: @community.id), method: :delete, remote: true) do |f| %>
+    <%= button_tag(class: "btn btn-community") do %>Joined<% end %>
+  <% end %>
+<% else %>
+  <%= form_for(current_user.user_communities.new, remote: true) do |f| %>
+    <div><%= hidden_field_tag :community_id, @community.id %></div>
+    <%= button_tag(class: "btn btn-communitied") do %>Join<% end %>
+  <% end %>
+<% end %>

@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @articles = Article.where(user_id: @user.id)
-    @tags = Tag.all
+    @tags = @user.articles.includes(:tag).group(:tag).count
   end
 
   def index
@@ -63,6 +63,6 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :myspot_name, :img, :remove_img)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :myspot_name, :img)
     end
 end

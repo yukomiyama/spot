@@ -15,9 +15,10 @@
       <div class="favorite-article-wrapper">
         <h1 class="text-gray">Favorite</h1>
         <% @favorites_articles.each do |article| %>
-          <div class="article-title-wrapper">
-            <h2><%= image_tag article.user.img.url, class: 'user-img' if article.user.img? %></h2>
-            <%= link_to article.title, user_article_path(article.user_id, article.id, class: 'article-title') %>
+          <div class="form-group user">
+            <%= image_tag article.user.img.url, class: 'user-img' %>
+            <%= link_to article.user.name, user_path(article.user.id) %>
+            <%= link_to article.title, article_path(article.id), class: 'article' %>
           </div>
         <% end %>
       </div>

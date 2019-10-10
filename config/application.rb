@@ -15,8 +15,12 @@ module Spot
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
-    
+
   # 認証トークンをremoteフォームに埋め込む
    config.action_view.embed_authenticity_token_in_remote_forms = true
+   #タイムゾーンを日本時間に指定
+   config.time_zone = "Asia/Tokyo"
+   # デフォルトのロケールを日本（ja）に設定
+   config.i18n.default_locale = :ja
   end
 end

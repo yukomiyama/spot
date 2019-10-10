@@ -1,35 +1,32 @@
-<div class="article-index-wrapper">
+<div class="articles-index-wrapper">
   <div class="container">
-    <div class="row">
-      <div class="col-md-3 user-prolife-wrapper">
-        <div class="form-group">
-          <%= image_tag current_user.img.url, class: 'user-img' if current_user.img? %>
-          <%= current_user.name %>
-        </div>
-        <form class="form-group">
-          <%= link_to 'edit', edit_user_path(current_user.id) %>
-          <%= link_to 'destroy', user_path(current_user.id), method: :delete %>
-        </form>
-        <%= render 'shared/stats' %>
-        <div class="search-form">
-          <%= form_tag(user_articles_path, method: :get) do %>
-            <%= text_field_tag :search %>
-            <%= submit_tag "article search", :name => nil %>
-          <% end %>
-        </div>
+    <div class="col-md-3 user-prolife-wrapper">
+      <div class="form-group">
+        <%= image_tag current_user.img.url, class: 'user-img' if current_user.img? %>
+        <%= current_user.name %>
       </div>
-      <div class="col-md-9">
-        <div class="articles">
-          <h1 class="text-gray">Articles</h1>
-          <% @articles.each do |article| %>
-            <div class="form-group user">
-              <%= image_tag article.user.img.url, class: 'user-img' if article.user.img? %>
-              <%= link_to article.user.name, user_path(article.user.id) %>
-              <%= link_to article.title, user_article_path(id: article.id, user_id: article.user_id), class: "article" %>
-            </div>
-          <% end %>
-        </div>
+      <form class="form-group">
+        <%= link_to 'edit', edit_user_path(current_user.id) %>
+        <%= link_to 'destroy', user_path(current_user.id), method: :delete %>
+      </form>
+      <%= render 'shared/stats' %>
+      <div class="search-form">
+        <%= form_tag(articles_path, method: :get) do %>
+          <%= text_field_tag :search %>
+          <%= submit_tag "article search", :name => nil, class: "search-btn" %>
+        <% end %>
       </div>
+    </div>
+    <div class="col-md-offset-1 col-md-8 articles-index-article-erea">
+      <h1 >Articles</h1>
+      <% @articles.each do |article| %>
+        <div class="article">
+          <%= image_tag article.user.img.url, class: 'user-img' %>
+          <%= link_to article.user.name, user_path(article.user.id) %>
+          <%= link_to article.title, article_path(article.id) %>
+          <p class="text-gray article-updated"><%= l article.updated_at %></p>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

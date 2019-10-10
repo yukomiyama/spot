@@ -1,41 +1,37 @@
 <div class="articles-show-wrapper">
   <div class="container">
-    <div class="col-md-12">
-      <div class="row">
-        <div class="article-wrapper">
-          <div class="article-title-wrapper">
-            <h2><%= image_tag @article.user.img.url, class: 'user-img' if @article.user.img? %></h2>
-            <h2 class="article-title text-gray"><%= @article.title %></h2>
+    <div class="col-md-12 article-wrapper">
+      <div class="article-title-erea">
+        <%= image_tag @article.user.img.url, class: 'user-img' %>
+        <h2 class="article-title"><%= @article.title %></h2>
+        <p class="text-gray article-updated"><%= l @article.updated_at %></p>
+      </div>
+      <%= link_to @tag.name, user_tag_path(id: @article.tag_id, user_id: @article.user.id), class: 'tag-label' %>
+      <div class="article-content">
+        <div class="article-img"><%= image_tag @article.img.url class: 'article-img' %></div>
+        <%= simple_format(@article.content) %>
+      </div>
+      <% if current_user?(@article.user) %>
+        <%= link_to 'edit', edit_article_path(@article.id) %>
+        <%= link_to 'delete', article_path(@article.id), method: :delete %>
+      <% end %>
+      <div id="favorite-button_<%= @article.id %>">
+        <%= render 'favorites/favorite', article: @article %>
+      </div>
+      <div class="comment-wrapper">
+        <% @comments.each do |comment| %>
+          <div class="form-group user">
+            <%= image_tag comment.user.img.url, class: 'user-img' if comment.user.img? %>
+            <%= link_to comment.user.name, user_path(comment.user.id) %>
+            <p><%= comment.content %></p>
           </div>
-          <%= link_to @tag.name, user_tag_path(id: @tag.id, user_id: @article.user_id) %>
-          <div class="article-content">
-            <%= simple_format(@article.content) %>
-          </div>
-          <% if current_user?(@article.user) %>
-            <%= link_to 'edit', edit_user_article_path(id: @article.id, user_id: @article.user_id) %>
-            <%= link_to 'delete', user_article_path(id: @article.id, user_id: @article.user_id), method: :delete %>
+        <% end %>
+        <div class="form-group col-md-offset-2 col-md-8">
+          <%= form_for [@article, @comment] do |f| %>
+            <%= f.label :comment, class: 'text-gray' %>
+            <%= f.text_field :content, placeholder: 'comment', class: 'form-control' %>
+            <%= f.submit "comment", class: 'btn-block comment-btn' %>
           <% end %>
-          <div id="favorite-button_<%= @article.id %>">
-            <%= render 'favorites/favorite', article: @article %>
-          </div>
-          <div class="comment-wrapper">
-            <% @comments.each do |comment| %>
-              <div class="form-group user">
-                <%= image_tag comment.user.img.url, class: 'user-img' if comment.user.img? %>
-                <%= link_to comment.user.name, user_path(comment.user.id) %>
-                <p><%= comment.content %></p>
-              </div>
-            <% end %>
-            <%= form_for [current_user, @article, @comment] do |f| %>
-              <div class="form-group col-md-offset-2 col-md-8">
-                <%= f.label :comment, class: 'text-gray' %>
-                <%= f.text_field :content, placeholder: 'comment', class: 'form-control' %>
-              </div>
-              <div class="col-md-offset-4 col-md-4">
-                <%= f.submit "comment", class: 'btn-block' %>
-              </div>
-            <% end %>
-          </div>
         </div>
       </div>
     </div>

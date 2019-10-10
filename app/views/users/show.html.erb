@@ -1,35 +1,37 @@
 <div class="users-show-wrapper">
   <div class="container">
-    <div class="row">
-      <div class="col-md-3 user-prolife-wrapper">
-        <div class="form-group">
-          <%= render 'shared/profile' %>
+    <div class="col-md-3 user-prolife-wrapper">
+      <%= render 'shared/profile' %>
+      <%= render "follow_form"%>
+    </div>
+    <div class="col-md-offset-1 col-md-8 main-erea">
+      <h1><%= @user.myspot_name %></h1>
+      <div class="col-md-8">
+        <% @articles.each do |article| %>
+        <div class="article">
+          <%= link_to article.title, article_path(article.id) %>
+          <p class="text-gray article-updated"><%= l article.updated_at %></p>
         </div>
-        <div class="form-group">
-          <%= render "follow_form" if logged_in? %>
-        </div>
+        <% end %>
       </div>
-      <div class="col-md-9">
-        <div class="article-wrapper">
-          <h1 class="spot-title text-gray"><%= @user.myspot_name %></h1>
-          <div class="col-md-6">
-            <% @articles.each do |article| %>
-              <%= link_to user_article_path(id: article.id, user_id: @user.id) do %>
-                <div class="form-group">
-                  <%= article.title %>
-                </div>
-              <% end %>
-            <% end %>
-          </div>
-          <div class="col-md-offset-2 col-md-4">
-            <% @tags.each do |tag| %>
-              <%= link_to user_tag_path(id: tag.id, user_id: @user.id) do %>
-                <ul>
-                  <li><%= tag.name %></li>
-                </ul>
-              <% end %>
-            <% end %>
-          </div>
+      <div class="col-md-offset-1 col-md-3">
+        <div class="users-show-tag-erea">
+          <p>Article Tags</p>
+          <% @tags.each do |tag, count| %>
+            <p><%= link_to "#{tag.name}(#{count})", user_tag_path(id: tag.id, user_id: @user.id) %></p>
+          <% end %>
+        </div>
+        <div class="users-show-joined-community-erea">
+          <p>Joined Communiies</p>
+          <% @user.join_communities.each do |community| %>
+            <%= link_to community.name, community_path(community.id) %>
+          <% end %>
+        </div>
+        <div class="users-show-maked-community-erea">
+          <p>Maked Communities</p>
+          <% @user.communities.each do |community| %>
+            <%= link_to community.name, community_path(community.id) %>
+          <% end %>
         </div>
       </div>
     </div>

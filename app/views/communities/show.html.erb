@@ -1,0 +1,35 @@
+<div class="communities-show-wrapper">
+  <div class="container">
+    <div class="col-md-12 communities-show-title-erea">
+      <h1><%= @community.name %></h1>
+      <h3>
+        <%= image_tag @community.user.img.url, class: 'user-img' %>
+        <%= link_to @community.user.name, user_path(@community.user_id) %>
+        <%= @community.explanation %>
+      </h3>
+      <div id="community-button_<%= @community.id %>">
+        <%= render 'communities/community', community: @community %>
+      </div>
+    </div>
+    <div class="col-md-8 communities-show-article-erea">
+      <h1>Recent Articles</h1>
+      <% @articles.each do |article| %>
+        <div class="article">
+          <%= image_tag article.user.img.url, class: 'user-img' %>
+          <%= link_to article.user.name, user_path(article.user_id) %>
+          <%= link_to article.title, article_path(article.id) %>
+          <p><%= l article.updated_at %></p>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-offset-1 col-md-3 communities-show-user-erea">
+      <h1>Users</h1>
+        <% @community.join_users.each do |user| %>
+          <div class="user">
+            <%= image_tag user.img.url, class: 'user-img' %>
+            <%= link_to user.name, user_path(user.id) %>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>

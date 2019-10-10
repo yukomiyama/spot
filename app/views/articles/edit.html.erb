@@ -2,23 +2,27 @@
   <div class="container">
     <div class="col-md-offset-4 col-md-4">
       <h1 class="text-white text-center">Edit Article</h1>
-      <div class="row">
-        <%= form_for [@article.user, @article] do |f| %>
-          <div class="form-group">
-            <%= f.label :title, class: 'text-white' %>
-            <%= f.text_field :title, placeholder: 'title', class: 'form-control' %>
-          </div>
-          <div class="form-group">
-            <%= f.label :content, class: 'text-white' %>
-            <%= f.text_field :content, placeholder: 'content', class: 'form-control' %>
-          </div>
-          <div class="form-group">
-            <%= f.label :tag, class: 'text-white' %>
-            <%= f.collection_select :tag_id, Tag.all, :id, :name %>
-          </div>
-          <%= f.submit "編集", class: 'btn-block btn-white' %>
-        <% end %>
-      </div>
+        <div class="row">
+          <%= form_for @article do |f| %>
+            <div class="form-group">
+              <%= f.label :title, class: 'text-white' %>
+              <%= f.text_field :title, placeholder: 'title', class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :content, class: 'text-white' %>
+              <%= f.text_area :content, placeholder: 'content', class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :tag, class: 'text-white' %>
+              <%= f.collection_select :tag_id, Tag.all, :id, :name %>
+            </div>
+            <div class="form-group">
+              <%= f.label :img, class: 'text-white' %>
+              <%= f.file_field :img, class: 'text-white img' %>
+            </div>
+            <%= f.submit "編集", class: 'btn-block btn-white' %>
+          <% end %>
+        </div>
     </div>
   </div>
 </div>

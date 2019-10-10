@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_01_144356) do
+ActiveRecord::Schema.define(version: 2019_10_07_060052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2019_10_01_144356) do
     t.integer "user_id"
     t.integer "tag_id"
     t.integer "favorites_count", default: 0, null: false, comment: "いいね数"
+    t.string "img"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -48,6 +49,7 @@ ActiveRecord::Schema.define(version: 2019_10_01_144356) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.string "explanation"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -75,6 +77,13 @@ ActiveRecord::Schema.define(version: 2019_10_01_144356) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
+  create_table "user_communities", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "community_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

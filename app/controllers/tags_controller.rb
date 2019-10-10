@@ -5,4 +5,5 @@ class TagsController < ApplicationController
     @tag = Tag.find(params[:id])
     @articles = @tag.articles.where(user_id: params[:user_id])
   end
+
 end

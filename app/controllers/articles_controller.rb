@@ -15,7 +15,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find_by(id: params[:id])
+    @article = Article.find(params[:id])
   end
 
   def update
@@ -34,10 +34,10 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find_by(id: params[:id])
+    @article = Article.find(params[:id])
     @tag = Tag.find(@article.tag_id)
     @comment = Comment.new
-    @comments = Comment.where(article_id: params[:id])
+    @comments = Comment.where(article_id: @article.id).includes(:user)
   end
 
   def index
@@ -46,7 +46,7 @@ class ArticlesController < ApplicationController
 
   private
 
-  def article_params
-    params.require(:article).permit(:title, :content, :tag_id)
-  end
+    def article_params
+      params.require(:article).permit(:title, :content, :tag_id, :img)
+    end
 end

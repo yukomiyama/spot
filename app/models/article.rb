@@ -1,4 +1,8 @@
 class Article < ApplicationRecord
+  validates :title, presence: true
+  validates :content, presence: true
+  validates :img, presence: true
+  mount_uploader :img, ImgUploader
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user

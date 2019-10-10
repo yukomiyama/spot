@@ -2,16 +2,12 @@
   <div class="favorite-wrapper">
     <% if @article.favorite?(current_user) %>
       <%= form_for(@article.favorites.find_by(user_id: current_user.id), method: :delete, remote: true) do |f| %>
-        <%= button_tag(class: "btn btn-favorited") do %>
-          Favorited
-        <% end %>
+        <%= button_tag(class: "btn btn-favorited") do %>Favorited<% end %>
       <% end %>
     <% else %>
       <%= form_for(@article.favorites.build, remote: true) do |f| %>
         <div><%= hidden_field_tag :article_id, @article.id %></div>
-        <%= button_tag(class: "btn btn-favorite") do %>
-          Favorite
-        <% end %>
+        <%= button_tag(class: "btn btn-favorite") do %>Favorite<% end %>
       <% end %>
     <% end %>
     <p class = "favorites-count"><%= @article.favorites.count %></p>
