@@ -1,27 +1,15 @@
-<div class="favorite-wrapper-index">
+<div class="favorites-wrapper-index">
   <div class="container">
-    <div class="col-md-3 user-prolife-wrapper">
-      <div class="form-group">
-        <%= image_tag current_user.img.url, class: 'user-img' if current_user.img? %>
-        <%= current_user.name %>
-      </div>
-      <form class="form-group">
-        <%= link_to 'edit', edit_user_path(current_user.id) %>
-        <%= link_to 'destroy', user_path(current_user.id), method: :delete %>
-      </form>
-      <%= render 'shared/stats' %>
-    </div>
-    <div class="col-md-9">
-      <div class="favorite-article-wrapper">
-        <h1 class="text-gray">Favorite</h1>
+    <div class="col-md-offset-2 col-md-8 favorites">
+        <h1>Favorites</h1>
         <% @favorites_articles.each do |article| %>
-          <div class="form-group user">
+          <div class="article">
             <%= image_tag article.user.img.url, class: 'user-img' %>
             <%= link_to article.user.name, user_path(article.user.id) %>
-            <%= link_to article.title, article_path(article.id), class: 'article' %>
+            <%= link_to article.title, article_path(article.id) %>
+            <p><%= l article.updated_at %></p>
           </div>
         <% end %>
-      </div>
     </div>
   </div>
 </div>

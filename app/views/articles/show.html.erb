@@ -20,19 +20,21 @@
       </div>
       <div class="comment-wrapper">
         <% @comments.each do |comment| %>
-          <div class="form-group user">
-            <%= image_tag comment.user.img.url, class: 'user-img' if comment.user.img? %>
+          <div class="commnet">
+            <%= image_tag comment.user.img.url, class: 'user-img' %>
             <%= link_to comment.user.name, user_path(comment.user.id) %>
-            <p><%= comment.content %></p>
+            <div class="comment-content">
+              <%= comment.content %>
+            </div>
           </div>
         <% end %>
-        <div class="form-group col-md-offset-2 col-md-8">
-          <%= form_for [@article, @comment] do |f| %>
-            <%= f.label :comment, class: 'text-gray' %>
-            <%= f.text_field :content, placeholder: 'comment', class: 'form-control' %>
-            <%= f.submit "comment", class: 'btn-block comment-btn' %>
-          <% end %>
-        </div>
+      </div>
+      <div class="form-group col-md-offset-2 col-md-8">
+        <%= form_for [@article, @comment] do |f| %>
+          <%= f.label :comment, class: 'text-gray' %>
+          <%= f.text_field :content, placeholder: 'comment', class: 'form-control' %>
+          <%= f.submit "comment", class: 'btn-block comment-btn' %>
+        <% end %>
       </div>
     </div>
   </div>

@@ -1,34 +1,30 @@
 <div class="users-index-wrapper">
   <div class="container">
-    <div class="row">
-      <div class="col-md-3 user-prolife-wrapper">
-        <div class="form-group">
-          <%= image_tag current_user.img.url, class: 'user-img' if current_user.img? %>
-          <%= current_user.name %>
-        </div>
-        <form class="form-group">
-          <%= link_to 'edit', edit_user_path(current_user.id) %>
-          <%= link_to 'destroy', user_path(current_user.id), method: :delete %>
-        </form>
-        <%= render 'shared/stats' %>
-        <div class="search-form">
-          <%= form_tag(users_path, method: :get) do %>
-            <%= text_field_tag :search %>
-            <%= submit_tag "user search", :name => nil %>
-          <% end %>
-        </div>
+    <div class="col-md-3 user-prolife-wrapper">
+      <div class="form-group">
+        <%= image_tag current_user.img.url, class: 'user-img'%>
+        <%= current_user.name %>
       </div>
-      <div class="col-md-9">
-        <div class="users-wrapper">
-          <h1 class="text-gray">Users</h1>
-          <% @users.each do |user| %>
-            <div class="form-group user">
-              <%= image_tag user.img.url, class: 'user-img' if user.img? %>
-              <%= link_to user.name, user_path(user.id) %>
-            </div>
-          <% end %>
-        </div>
+      <form class="form-group">
+        <%= link_to 'edit', edit_user_path(current_user.id) %>
+        <%= link_to 'destroy', user_path(current_user.id), method: :delete %>
+      </form>
+      <%= render 'shared/stats' %>
+      <div class="search-form">
+        <%= form_tag(users_path, method: :get) do %>
+          <%= text_field_tag :search %>
+          <%= submit_tag "user search", :name => nil, class: "search-btn" %>
+        <% end %>
       </div>
+    </div>
+    <div class="col-md-offset-1 col-md-8 users-index-users-erea">
+      <h1>Users</h1>
+      <% @users.each do |user| %>
+        <div class="user">
+          <%= image_tag user.img.url, class: 'user-img'%>
+          <%= link_to user.name, user_path(user.id), class: 'user-name' %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

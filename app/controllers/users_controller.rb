@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :show, :index, :following, :followers]
+  before_action :logged_in_user
 
   def new
     @user = User.new
@@ -9,7 +9,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login @user
-      flash[:success] = "Welcome to the spot"
       redirect_to user_url(@user)
     else
       render :new
@@ -23,7 +22,6 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "Edit success"
       redirect_to user_url(@user)
     else
       render :edit

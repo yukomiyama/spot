@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-  before_action :logged_in_user, only: [:show]
+  before_action :logged_in_user
 
   def show
     @tag = Tag.find(params[:id])

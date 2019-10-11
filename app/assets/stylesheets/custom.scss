@@ -91,6 +91,12 @@ body {
   background: gray;
 }
 
+.search-btn {
+  min-width: 100px;
+  max-width: 100%;
+  display: block;
+}
+
 /* follow-form */
 #follow_form {
   margin-top: 15px;
@@ -116,20 +122,7 @@ body {
 }
 
 /* background */
-.top-pages-wrapper
-// .users-index-wrapper,
-// .users-new-wrapper,
-// .users-show_follow-wrapper,
-// .users-edit-wrapper,
-// .sessions-new-wrapper,
-// .articles-new-wrapper,
-// .articles-edit-wrapper,
-// .tags-show-wrapper,
-// .favorite-wrapper-index,
-// .communities-new-wrapper,
-// .communities-index-wrapper,
-// .communities-show-wrapper
-{
+.top-pages-wrapper {
   width: 100vw;
   height: 100vh;
   background: image-url('stone_00090.jpg');
@@ -141,7 +134,6 @@ body {
 }
 
 /*--------------users-----------------*/
-/* users-index */
 .user-prolife-wrapper {
   background-color: #fff;
   padding: 15px;
@@ -159,52 +151,21 @@ body {
   padding-top: 220px;
 }
 
-// .user {
-//   display: flex;
-//   align-items: center;
-//   margin: 10px 0;
-//   margin-right: 10px;
-//   img {
-//     margin-right: 5px;
-//   }
-//   p {
-//     margin-left: 10px;
-//   }
-//   .article {
-//     margin-left: 10px;
-//   }
-// }
-
 .search-form {
   margin-top: 10px;
 }
 
-
 /*users-index*/
-//article-wrapper
-// .users-wrapper,
-// .users-follow-wrapper,
-// .favorite-article-wrapper,
-// .articles {
-//   background: #fff;
-//   padding: 100px;
-//   .form-group {
-//     margin-top: 10px;
-//   }
-//   .spot-title {
-//     border-bottom: 1px solid gray;
-//     margin-bottom: 10px;
-//   }
-//   .spot-category {
-//     border: 1px solid gray;
-//     display: inline-block;
-//     padding: 0 8px;
-//     margin: 0 0 30px 0;
-//   }
-//   img {
-//     display: block;
-//   }
-// }
+.users-index-users-erea {
+  padding: 30px;
+  background: #fff;
+  .user {
+    margin-bottom: 10px;
+    .user-name {
+      margin-left: 5px;
+    }
+  }
+}
 
 /*users-show-wrapper*/
 .main-erea {
@@ -234,6 +195,18 @@ body {
     }
     a {
       display: block;
+    }
+  }
+}
+
+/*users-show-follow-wrapper*/
+.users-show-follow-users {
+  padding: 30px;
+  background: #fff;
+  .user {
+    margin-bottom: 10px;
+    .user-name {
+      margin-left: 5px;
     }
   }
 }
@@ -269,6 +242,34 @@ body {
       margin-left: 5px;
     }
   }
+  .comment-wrapper {
+    margin: 30px 0;
+    .commnet {
+      margin-bottom: 10px;
+      .comment-content {
+        border-radius: 5px;
+        position: relative;
+        display: inline-block;
+        margin-left: 15px;
+        padding: 10px;
+        min-width: 120px;
+        max-width: 100%;
+        color: black;
+        background: #ccc;
+        box-shadow: 3px 3px 10px;
+      }
+      .comment-content:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: -24px;
+        margin-top: -12px;
+        border: 12px solid transparent;
+        border-right: 12px solid #ccc;
+        z-index: 1;
+      }
+    }
+  }
 }
 .tag-label {
   color: #fff;
@@ -288,7 +289,19 @@ body {
   margin-top: 10px;
 }
 
-/*--------------community-----------------*/
+/*--------------favorites-----------------*/
+.favorites {
+  padding: 30px;
+  background: #fff;
+}
+
+/*--------------tags-----------------*/
+.tags {
+  padding: 30px;
+  background: #fff;
+}
+
+/*--------------communities-----------------*/
 /*communities-index-wrapper*/
 .communities {
   padding: 30px;

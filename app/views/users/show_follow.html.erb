@@ -1,24 +1,18 @@
-<div class="users-show_follow-wrapper">
+<div class="users-show-follow-wrapper">
   <div class="container">
-    <div class="row">
-      <div class="col-md-3 user-prolife-wrapper">
-        <div class="form-group">
-          <%= render 'shared/profile' %>
-        </div>
+    <div class="col-md-3 user-prolife-wrapper">
+      <div class="form-group">
+        <%= render 'shared/profile' %>
       </div>
-      <div class="col-md-9">
-        <div class="users-follow-wrapper">
-          <h1 class="text-gray"><%= @title %></h1>
-          <% if @users.any? %>
-            <% @users.each do |user| %>
-              <div class="form-group user">
-                <%= image_tag user.img.url, class: 'user-img' if user.img? %>
-                <%= link_to user.name, user_path(user.id) %>
-              </div>
-            <% end %>
-          <% end %>
+    </div>
+    <div class="col-md-offset-1 col-md-8 users-show-follow-users">
+      <h1><%= @title %></h1>
+      <% @users.each do |user| %>
+        <div class="user">
+          <%= image_tag user.img.url, class: 'user-img' if user.img? %>
+          <%= link_to user.name, user_path(user.id) %>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
