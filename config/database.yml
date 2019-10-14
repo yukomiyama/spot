@@ -24,6 +24,7 @@ default: &default
 development:
   <<: *default
   database: spot_development
+  # adapter: sqlite3
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -83,6 +84,6 @@ production:
   database: spot_production
   username: spot
   password: <%= ENV['SPOT_DATABASE_PASSWORD'] %>
-  adapter: postgresql
-  encoding: unicode
-  pool: 5
+  # adapter: postgresql
+  # encoding: unicode
+  # pool: 5
