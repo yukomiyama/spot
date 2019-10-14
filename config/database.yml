@@ -83,3 +83,6 @@ production:
   database: spot_production
   username: spot
   password: <%= ENV['SPOT_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
