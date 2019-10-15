@@ -1,11 +1,7 @@
 class User < ApplicationRecord
-  validates :name, presence: true
-  validates :email,
-    presence: true,
-    uniqueness: true,
-    format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
-    has_secure_password
-  validates :password, presence: true, length: {minimum: 6}
+  validates :name, presence: true, unless: :uid?
+  validates :email, presence: true, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }, unless: :uid?
+  validates :password, presence: true, length: {minimum: 6}, unless: :uid?
   validates :img, presence: true
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -19,6 +15,7 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships
   mount_uploader :img, ImgUploader
+  has_secure_password
 
   # ユーザーをフォローする
   def follow(other_user)
@@ -33,6 +30,21 @@ class User < ApplicationRecord
   # 現在のユーザーがフォローしてたらtrueを返す
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  #auth hashからユーザー情報取得
+  #DBにユーザーが存在すれば情報取得し更新、存在しなければユーザー作成
+  def self.find_or_create_from_auth(auth)
+    provider = auth[:provider]
+    uid = auth[:uid]
+    name = auth[:info][:name]
+    image = auth[:info][:image]
+
+    #DB情報更新
+    self.find_or_create_by(provider: provider, uid: uid) do |user|
+      user.name = name
+      user.img = image
+    end
   end
 
   #ユーザー検索

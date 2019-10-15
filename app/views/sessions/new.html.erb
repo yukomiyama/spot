@@ -13,6 +13,9 @@
             <%= f.password_field :password, placeholder: 'password', class: 'form-control' %>
           </div>
           <%= f.submit "ログイン", class: 'btn-block btn-white' %>
+          <%= link_to '/auth/facebook', class: "btn btn-social btn-facebook" do %>
+            <span class="fa fa-facebook"></span> Facebookアカウントでログイン
+          <% end %>
         <% end %>
       </div>
     </div>

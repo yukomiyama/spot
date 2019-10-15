@@ -1,14 +1,19 @@
 class SessionsController < ApplicationController
-  def new
-  end
 
   def create
-    if user = User.find_by(session_params)
+    auth = request.env['omniauth.auth']
+    if auth.present?
+      user = User.find_or_create_from_auth(request.env['omniauth.auth'])
       login user
       redirect_to user_url(user)
     else
-      flash.now[:danger] = 'Invalid email/password combination'
-      render 'new'
+      if user = User.find_by(session_params)
+        login user
+        redirect_to user_url(user)
+      else
+        flash.now[:danger] = 'Invalid email/password combination'
+        render 'new'
+      end
     end
   end
 
