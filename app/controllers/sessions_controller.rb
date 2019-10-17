@@ -5,11 +5,11 @@ class SessionsController < ApplicationController
     if auth.present?
       user = User.find_or_create_from_auth(request.env['omniauth.auth'])
       session[:user_id] = user.id
-      # login user
       redirect_to user_path(user)
-      # redirect_to root_path
     else
-      if user = User.find_by(session_params)
+      user = User.find_by(email: params[:session][:email].downcase)
+      if user && user.authenticate(params[:session][:password])
+      # if user = User.find_by(session_params)
         login user
         redirect_to user_url(user)
       else
@@ -24,10 +24,10 @@ class SessionsController < ApplicationController
     redirect_to root_url
   end
 
-  private
-
-  def session_params
-    params.require(:session).permit(:email, :password_digest)
-  end
+  # private
+  #
+  # def session_params
+  #   params.require(:session).permit(:email, :password_digest)
+  # end
 
 end
