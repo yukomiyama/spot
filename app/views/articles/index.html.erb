@@ -10,6 +10,8 @@
         <%= link_to 'destroy', user_path(current_user.id), method: :delete %>
       </form>
       <%= render 'shared/stats' %>
+
+      <!--  記事検索機能  -->
       <div class="search-form">
         <%= form_tag(articles_path, method: :get) do %>
           <%= text_field_tag :search %>
@@ -17,6 +19,7 @@
         <% end %>
       </div>
     </div>
+
     <div class="col-md-offset-1 col-md-8 articles-index-article-erea">
       <h1 >Articles</h1>
       <% @articles.each do |article| %>

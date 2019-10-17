@@ -24,12 +24,33 @@ class Article < ApplicationRecord
     favorite_users.include?(user)
   end
 
-  #記事検索
-  def self.search(search)
-    if search
-      Article.where(['title LIKE ?', "%#{search}%"])
+  #記事検索(検索範囲:tag、記事本文、記事見出し)
+  #複数ワード検索機能追加(ex.. "ruby rails")
+  def self.search(keyword)
+    if keyword && keyword != ""
+
+      #検索キーワード
+      keywords = keyword.to_s.split(" ")
+      #検索対象のカラム
+      columns = ["content", "title", "name"]
+      #検索対象のカラム分のクエリ発行
+      querys = columns.map {|column| "#{column} LIKE ?" }
+      #検索結果
+      results = []
+
+      keywords.each_with_index do |keyword, index|
+        if index == 0
+          results[index] = Article.joins(:tag).where(querys.join(" OR "), "%#{keyword}%", "%#{keyword}%", "%#{keyword}%")
+        else
+          results[index] = results[index-1].where(querys.join(" OR "), "%#{keyword}%", "%#{keyword}%", "%#{keyword}%")
+        end
+      end
+
+      return results[keywords.length-1]
     else
       Article.all
     end
+
+    # Article.joins(:tag).where("content LIKE ? OR title LIKE ? OR name LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
   end
 end
