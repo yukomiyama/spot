@@ -2,7 +2,7 @@ class User < ApplicationRecord
   validates :name, presence: true, unless: :uid?
   validates :email, presence: true, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }, unless: :uid?
   validates :password, presence: true, length: {minimum: 6}, unless: :uid?
-  validates :img, presence: true
+  validates :img, presence: true, unless: :uid?
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
