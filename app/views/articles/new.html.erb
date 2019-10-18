@@ -18,7 +18,7 @@
             </div>
             <div class="form-group">
               <%= f.label :img, class: 'text-white' %>
-              <%= f.file_field :imgs[], class: 'text-white img' %>
+              <%= f.file_field :imgs, multiple: true, class: 'text-white img' %>
             </div>
             <div class="form-group">
               <%= f.submit "投稿", class: 'btn-block btn-white' %>
