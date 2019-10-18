@@ -9,7 +9,7 @@
       <h1><%= @title %></h1>
       <% @users.each do |user| %>
         <div class="user">
-          <%= image_tag user.img.url, class: 'user-img' if user.img? %>
+          <%= image_tag user.img, class: 'user-img' if user.img? %>
           <%= link_to user.name, user_path(user.id) %>
         </div>
       <% end %>

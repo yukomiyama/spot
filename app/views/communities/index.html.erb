@@ -5,7 +5,7 @@
       <% @communities.each do |community| %>
         <div class="community">
           <%= link_to community.name, community_path(community.id), class: "community-name" %>
-          <%= image_tag community.user.img.url, class: "user-img" %>
+          <%= image_tag community.user.img, class: "user-img" %>
           <%= link_to community.user.name, user_path(community.user_id), class: "user-name" %>
           <div class="community-explanation">
             <%= community.explanation %>
