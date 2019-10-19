@@ -19,13 +19,11 @@
     </div>
     <div class="col-md-offset-1 col-md-8 users-index-users-erea">
       <h1>Users</h1>
-      <% if user.img.attached? %>
-        <% @users.each do |user| %>
-          <div class="user">
-            <%= image_tag user.img, class: 'user-img'%>
-            <%= link_to user.name, user_path(user.id), class: 'user-name' %>
-          </div>
-        <% end %>
+      <% @users.each do |user| %>
+        <div class="user">
+          <%= image_tag user.img, class: 'user-img'%>
+          <%= link_to user.name, user_path(user.id), class: 'user-name' %>
+        </div>
       <% end %>
     </div>
   </div>
