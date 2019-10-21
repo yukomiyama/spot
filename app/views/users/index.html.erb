@@ -21,7 +21,7 @@
       <h1>Users</h1>
       <% @users.each do |user| %>
         <div class="user">
-          <%= image_tag user.img, class: 'user-img' if user.img.attached? %>
+          <%= image_tag url_for(user.img), class: 'user-img' if user.img.attached? %>
           <%= link_to user.name, user_path(user.id), class: 'user-name' %>
         </div>
       <% end %>
