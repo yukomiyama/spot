@@ -1,9 +1,21 @@
 <div class="users-show-wrapper">
   <div class="container">
+
+    <!--  プロフィール  -->
     <div class="col-md-3 user-prolife-wrapper">
-      <%= render 'shared/profile', user: @user %>
-      <%= render "follow_form"%>
+      <div class="form-group">
+        <%= image_tag @user.img, class: 'user-img' if @user.img.attached? %>
+        <%= @user.name %>
+      </div>
+      <% if @user == current_user %>
+        <form class="form-group">
+          <%= link_to 'edit', edit_user_path(@user.id) %>
+          <%= link_to 'destroy', user_path(@user.id), method: :delete %>
+        </form>
+      <% end %>
+      <%= render 'shared/stats' %>
     </div>
+
     <div class="col-md-offset-1 col-md-8 main-erea">
       <h1><%= @user.myspot_name %></h1>
       <div class="col-md-8">
