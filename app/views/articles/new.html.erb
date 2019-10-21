@@ -17,7 +17,7 @@
               <%= f.collection_select :tag_id, Tag.all, :id, :name %>
             </div>
             <div class="form-group">
-              <%= f.label :img, class: 'text-white' %>
+              <%= f.label :imgs, class: 'text-white' %>
               <%= f.file_field :imgs, multiple: true, class: 'text-white img' %>
             </div>
             <div class="form-group">

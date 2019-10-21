@@ -1,15 +1,5 @@
 <div class="articles-index-wrapper">
   <div class="container">
-    <div class="col-md-3 user-prolife-wrapper">
-      <div class="form-group">
-        <%= image_tag current_user.img, class: 'user-img'%>
-        <%= current_user.name %>
-      </div>
-      <form class="form-group">
-        <%= link_to 'edit', edit_user_path(current_user.id) %>
-        <%= link_to 'destroy', user_path(current_user.id), method: :delete %>
-      </form>
-      <%= render 'shared/stats' %>
 
       <!--  記事検索機能  -->
       <div class="search-form">
@@ -18,16 +8,32 @@
           <%= submit_tag "article search", :name => nil, class: "search-btn" %>
         <% end %>
       </div>
-    </div>
 
-    <div class="col-md-offset-1 col-md-8 articles-index-article-erea">
-      <h1 >Articles</h1>
+
+    <h1 class="col-md-9 articles">
+      Articles
+    </h1>
+
+    <!--  記事一覧  -->
+    <div class="articles-index-article-erea">
       <% @articles.each do |article| %>
-        <div class="article">
-          <%= image_tag article.user.img, class: 'user-img' %>
-          <%= link_to article.user.name, user_path(article.user.id) %>
-          <%= link_to article.title, article_path(article.id) %>
-          <p class="text-gray article-updated"><%= l article.updated_at %></p>
+        <div class="col-md-9 article">
+          <!--  記事上部  -->
+          <div class="article-top">
+            <%= image_tag article.imgs[0], width:100, class: "article-img" %>
+            <h1 class="article-title">
+              <%= link_to article.title, article_path(article.id), class: "text-white" %>
+            </h1>
+          </div>
+          <!--  記事下部  -->
+          <div class="article-bottom">
+            <p class="article-content">
+              <%= link_to article.content, article_path(article.id) %>
+            </p>
+            <%= image_tag article.user.img, class: "user-img" %>
+            <%= link_to article.user.name, user_path(article.user.id), class: "user-name" %>
+            <p class="text-gray article-updated"><%= l article.updated_at %></p>
+          </div>
         </div>
       <% end %>
     </div>
