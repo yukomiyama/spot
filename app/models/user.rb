@@ -33,20 +33,40 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
-  #auth hashからユーザー情報取得
-  #DBにユーザーが存在すれば情報取得し更新、存在しなければユーザー作成
-  def self.find_or_create_from_auth(auth)
+  def self.find_auth(auth)
     provider = auth[:provider]
     uid = auth[:uid]
     name = auth[:info][:name]
     image = auth[:info][:image]
 
-    #DB情報更新
-    self.find_or_create_by(provider: provider, uid: uid) do |user|
-      user.name = name
-      user.img = image
+    #DBにデータがあるか
+    if user = self.find_by(provider: provider, uid: uid)
+      #登録があればprovider,uidが一致するデータをリターン
+      return user
+    else
+      # 登録がなければ新規登録
+      user = self.create(name: name, img: image, provider: provider, uid: uid)
     end
   end
+
+
+
+
+  #auth hashからユーザー情報取得
+  #DBにユーザーが存在すれば情報取得し更新、存在しなければユーザー作成
+  # def self.find_or_create_from_auth(auth)
+  #   provider = auth[:provider]
+  #   uid = auth[:uid]
+  #   name = auth[:info][:name]
+  #   image = auth[:info][:image]
+  #
+  #   #DB情報更新
+  #   #書き方を変えてみる
+  #   self.find_or_create_by(provider: provider, uid: uid) do |user|
+  #     user.name = name
+  #     user.img = image
+  #   end
+  # end
 
   #ユーザー検索
   def self.search(search)
