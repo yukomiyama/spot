@@ -2,7 +2,7 @@
   <div class="container">
     <div class="col-md-offset-4 col-md-4">
       <h1 class="text-white text-center">New Article</h1>
-        <div class="row">
+        <!-- <div class="row"> -->
           <%= form_for @article do |f| %>
             <div class="form-group">
               <%= f.label :title, class: 'text-white' %>
@@ -10,21 +10,18 @@
             </div>
             <div class="form-group">
               <%= f.label :content, class: 'text-white' %>
-              <%= f.text_area :content, placeholder: 'content', class: 'form-control' %>
+              <%= f.rich_text_area :content %>
+              <!-- <%= f.file_field :imgs, multitype: true %> -->
             </div>
             <div class="form-group">
               <%= f.label :tag, class: 'text-white' %>
               <%= f.collection_select :tag_id, Tag.all, :id, :name %>
             </div>
             <div class="form-group">
-              <%= f.label :imgs, class: 'text-white' %>
-              <%= f.file_field :imgs, multiple: true, class: 'text-white img' %>
-            </div>
-            <div class="form-group">
               <%= f.submit "投稿", class: 'btn-block btn-white' %>
             </div>
           <% end %>
-        </div>
+        <!-- </div> -->
     </div>
   </div>
 </div>

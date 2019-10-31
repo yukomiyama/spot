@@ -10,10 +10,11 @@
 
       <!--  記事  -->
       <div class="article-content">
+        <%= @article.content %>
         <% @article.imgs.each do |img| %>
-          <div class="article-img"><%= image_tag img, class: 'article-img' %></div>
+          <%= image_tag img.variant(resize: '1024x768').processed if @article.img.attached? %>
+          <!-- <%= image_tag img if @article.img.attached? %> -->
         <% end %>
-        <%= simple_format(@article.content) %>
       </div>
       <% if current_user?(@article.user) %>
         <%= link_to 'edit', edit_article_path(@article.id) %>

@@ -6,9 +6,15 @@ class Article < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user
   has_many_attached :imgs
+  has_rich_text :content
   # mount_uploader :img, ImgUploader
   belongs_to :tag
   belongs_to :user
+
+  #MiniMagickで画像リサイズ
+  def thumbnail(img)
+    return self.variant(resize: '300x300!').processed
+  end
 
   #記事にいいねする
   def favorite(user)

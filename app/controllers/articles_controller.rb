@@ -7,6 +7,25 @@ class ArticlesController < ApplicationController
 
   def create
     @article = current_user.articles.new(article_params)
+
+    # respond_to do |format|
+    #   if @post.save
+    #     format.html { redirect_to user_path(current_user.id), notice: 'Post was successfully created.' }
+    #     format.json { render :show, status: :created, location: @article }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @article.errors, status: :unprocessable_entity }
+    #   end
+    # end
+
+    #画像リサイズ
+    # if params[:imgs] != nil
+    #   imgs = MiniMagick::Image.read(params[:imgs])
+    #   img.resize "300x300"
+    #   img.write "public/images/sample.jpg"
+    # end
+    # @article.imgs = imgs
+
     if @article.save
       redirect_to user_path(current_user.id)
     else

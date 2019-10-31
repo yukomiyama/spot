@@ -1,5 +1,12 @@
 {
   "name": "spot",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "actiontext": "https://github.com/kobaltz/actiontext",
+    "@rails/webpacker": "^4.0.7",
+    "trix": "^1.2.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.9.0"
+  }
 }
